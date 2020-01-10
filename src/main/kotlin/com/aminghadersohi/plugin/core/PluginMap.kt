@@ -2,7 +2,8 @@ package com.aminghadersohi.plugin.core
 
 abstract class PluginMap<Key, Plugin, PluginContext>(
     defaultContext: PluginContext
-) : PluginMapSelector<Key, Plugin, PluginContext> {
+) : PluginList<Plugin, PluginContext>(defaultContext = defaultContext),
+    PluginMapSelector<Key, Plugin, PluginContext> {
     override fun plugin(key: Key, context: PluginContext): Plugin? {
         return buildersMap()[key]!!.build(context)
     }
