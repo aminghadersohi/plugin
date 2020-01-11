@@ -20,6 +20,4 @@ abstract class PluginList<Plugin, PluginContext>(
             .map { it.build(context) }
 
     abstract fun builders(): List<PluginBuilder<Plugin, PluginContext>>
-
-
 }
