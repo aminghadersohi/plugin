@@ -8,17 +8,7 @@ abstract class PluginMap<Key, Plugin, PluginContext>(
         return buildersMap()[key]!!.build(context)
     }
 
-    override fun plugin(context: PluginContext): Plugin? {
-        return buildersMap().toList().first().second.build(context)
-    }
-
-    override fun plugin(index: Int, context: PluginContext): Plugin? {
-        return buildersMap().toList().first().second.build(context)
-    }
-
-    override fun plugins(context: PluginContext): List<Plugin> {
-        return buildersMap().toList().map { it.second.build(context) }
-    }
+    override fun builders(): List<PluginBuilder<Plugin, PluginContext>> = buildersMap().values.toList()
 
     abstract fun buildersMap(): Map<Key, PluginBuilder<Plugin, PluginContext>>
 }
